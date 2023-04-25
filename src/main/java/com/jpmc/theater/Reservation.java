@@ -12,6 +12,14 @@ public class Reservation {
     }
 
     public double totalFee() {
-        return showing.getMovieFee() * audienceCount;
+        // Prevents negative audienceCount
+        if(audienceCount < 1){
+            return 0;
+        }
+        return showing.calculateFee(audienceCount);
+    }
+
+    public void print() {
+        System.out.println(customer.toString() + " --- " + customer.getId()+ "\nTicket Count: " + audienceCount + " --- Total Cost: $" + String.format("%.2f", totalFee()));
     }
 }

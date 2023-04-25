@@ -19,6 +19,10 @@ public class Customer {
 
         }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,6 +38,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "name: " + name;
+        return "Name: " + name;
     }
 }
