@@ -36,7 +36,7 @@ public class Reservation {
      * Prints out the reservation
      */
     public void print() {
-        System.out.println(customer.toString() + " --- " + customer.getId() + "\nTicket Count: " + audienceCount
+        System.out.println(customer.toString() + " --- ID: " + customer.getId() + "\nTicket Count: " + audienceCount
                 + " --- Total Cost: $" + String.format("%.2f", totalFee()));
     }
 }

@@ -28,7 +28,7 @@ public class ReservationTests {
 
     @Test
     void totalFeeWith3Customers() {
-        var customer = new Customer("John Doe", "unused-id");
+        var customer = new Customer("John Doe", 24);
         var showing = new Showing(
                 new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1),
                 1,
@@ -39,7 +39,7 @@ public class ReservationTests {
 
     @Test
     void totalFeeWith0Customers() {
-        var customer = new Customer("John Doe", "unused-id");
+        var customer = new Customer("John Doe", 24);
         var showing = new Showing(
                 new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1),
                 1,
@@ -51,7 +51,7 @@ public class ReservationTests {
 
     @Test
     void totalFeeWithNegativeCustomers() {
-        var customer = new Customer("John Doe", "unused-id");
+        var customer = new Customer("John Doe", 24);
         var showing = new Showing(
                 new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1),
                 1,
@@ -63,7 +63,7 @@ public class ReservationTests {
 
     @Test
     void checkPrint() {
-        var customer = new Customer("John Doe", "123456");
+        var customer = new Customer("John Doe", 24);
         var showing = new Showing(
                 new Movie("Spider-Man: No Way Home", Duration.ofMinutes(90), 12.5, 1),
                 1,
@@ -71,6 +71,6 @@ public class ReservationTests {
         );
 
         new Reservation(customer, showing, 3).print();
-        assertEquals("Name: John Doe --- 123456\nTicket Count: 3 --- Total Cost: $28.50", outputStreamCaptor.toString().trim());
+        assertEquals("Name: John Doe --- ID: 24\nTicket Count: 3 --- Total Cost: $28.50", outputStreamCaptor.toString().trim());
     }
 }

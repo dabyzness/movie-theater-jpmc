@@ -10,7 +10,7 @@ public class Customer {
     /** Customer's name */
     private String name;
     /** Customer's id */
-    private String id;
+    private int id;
 
     /**
      * Constructor
@@ -18,7 +18,7 @@ public class Customer {
      * @param name customer name
      * @param id   customer id
      */
-    public Customer(String name, String id) {
+    public Customer(String name, int id) {
         this.id = id;
         this.name = name;
     }
@@ -26,7 +26,7 @@ public class Customer {
     /**
      * Getter - id
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
 
