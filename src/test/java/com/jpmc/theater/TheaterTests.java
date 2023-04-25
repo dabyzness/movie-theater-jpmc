@@ -1,10 +1,5 @@
 package com.jpmc.theater;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,7 +41,7 @@ public class TheaterTests {
         Theater theater = new Theater(LocalDateProvider.singleton());
 
         Exception exception = assertThrows(IllegalStateException.class, () -> {
-            Reservation reservation = theater.reserve(new Customer("John Doe", "12"), 15, 3);
+            theater.reserve(new Customer("John Doe", "12"), 15, 3);
         });
 
         assertEquals("not able to find any showing for given sequence 15", exception.getMessage());
@@ -57,7 +52,7 @@ public class TheaterTests {
         Theater theater = new Theater(LocalDateProvider.singleton());
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Reservation reservation = theater.reserve(new Customer("John Doe", "12"), 15, -1);
+            theater.reserve(new Customer("John Doe", "12"), 15, -1);
         });
 
         assertEquals("Invalid number of tickets -1", exception.getMessage());
