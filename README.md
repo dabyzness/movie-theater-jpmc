@@ -44,3 +44,4 @@ This is a poorly written application, and we're expecting the candidate to great
 - I wanted to test the two print statements for theater, but because I couldn't make fewer showings to make it easier for me, I decided against it.
 - The JSON was up to my discretion, so I chose values that would be most useful
   - Example: For runtime/duration, I made it an integer of minutes, instead of (1 hour 30 mins) like in the original printSchedule
+- [Post-Submission] I didn't feel right leaving customer id as type String, so I changed it to int. It might make sense to use long as int can only go up to ~2.2 billion and I'm sure movie theaters like AMC have sold more tickets than that.
