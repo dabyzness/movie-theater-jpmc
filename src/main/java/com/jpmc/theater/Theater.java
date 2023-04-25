@@ -3,6 +3,7 @@ package com.jpmc.theater;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -42,12 +43,22 @@ public class Theater {
     }
 
     public void printSchedule() {
-        System.out.println(provider.currentDate());
+        System.out.println(DateTimeFormatter.ofPattern("dd/MM/YYYY").format(provider.currentDate()));
         System.out.println("===================================================");
         schedule.forEach(s ->
-                System.out.println(s.getSequenceOfTheDay() + ": " + s.getStartTime() + " " + s.getMovie().getTitle() + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + s.getMovieFee())
+                System.out.println(s.getSequenceOfTheDay() + ": " + humanReadableStartTime(s.getStartTime()) + " " + s.getMovie().getTitle() + " " + humanReadableFormat(s.getMovie().getRunningTime()) + " $" + String.format("%.2f", s.getMovieFee()))
         );
         System.out.println("===================================================");
+    }
+
+    public String humanReadableStartTime(LocalDateTime time) {
+        int hour = time.getHour();
+        int minute = time.getMinute();
+
+        String meridien = hour >= 12 ? "PM" : "AM";
+        hour = hour > 12 ? hour - 12 : hour;
+
+        return String.format("%s:%s %s", hour, minute < 10 ? Integer.toString(minute) + "0" : minute, meridien);
     }
 
     public String humanReadableFormat(Duration duration) {
@@ -88,6 +99,6 @@ public class Theater {
     public static void main(String[] args) {
         Theater theater = new Theater(LocalDateProvider.singleton());
         theater.printSchedule();
-        theater.printScheduleJSON();
+        // theater.printScheduleJSON();
     }
 }
