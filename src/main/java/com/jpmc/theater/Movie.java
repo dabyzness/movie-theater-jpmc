@@ -47,6 +47,8 @@ public class Movie {
         } else if (showSequence == 2) {
 
             sequenceDiscount = 2; // $2 discount for 2nd show
+        } else if (showSequence >= 7) {
+            sequenceDiscount = 1; // $1 discount for 7th+ show
         }
 //        else {
 //            throw new IllegalArgumentException("failed exception");
