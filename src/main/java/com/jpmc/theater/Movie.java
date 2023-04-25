@@ -2,6 +2,7 @@ package com.jpmc.theater;
 
 import java.time.Duration;
 import java.util.Objects;
+import java.util.LocalDateTime;
 
 public class Movie {
     private static int MOVIE_CODE_SPECIAL = 1;
@@ -32,10 +33,10 @@ public class Movie {
     }
 
     public double calculateTicketPrice(Showing showing) {
-        return ticketPrice - getDiscount(showing.getSequenceOfTheDay());
+        return ticketPrice - getDiscount(showing.getSequenceOfTheDay(), showing.getStartTime());
     }
 
-    private double getDiscount(int showSequence) {
+    private double getDiscount(int showSequence, LocalDateTime showStartTime) {
         double specialDiscount = 0;
         if (MOVIE_CODE_SPECIAL == specialCode) {
             specialDiscount = ticketPrice * 0.2;  // 20% discount for special movie
@@ -54,8 +55,16 @@ public class Movie {
 //            throw new IllegalArgumentException("failed exception");
 //        }
 
+        int startHour = showStartTime.getHour()
+        double startTimeDiscount = 0;
+        if(startHour >= 11 && startHour <= 16){
+            startTimeDiscount = ticketPrice * .25; // 25% discount for movies between 11AM-4PM
+        }
+
+        double percentDiscount = specialDiscount > startTimeDiscount ? specialDiscount : startTimeDiscount;
+
         // biggest discount wins
-        return specialDiscount > sequenceDiscount ? specialDiscount : sequenceDiscount;
+        return percentDiscount > sequenceDiscount ? percentDiscount : sequenceDiscount;
     }
 
     @Override
