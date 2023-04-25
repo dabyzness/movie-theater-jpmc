@@ -2,6 +2,9 @@ package com.jpmc.theater;
 
 import java.time.LocalDate;
 
+/**
+ * Local Date Provider
+ */
 public class LocalDateProvider {
     private static LocalDateProvider instance = null;
 
@@ -12,10 +15,14 @@ public class LocalDateProvider {
         if (instance == null) {
             instance = new LocalDateProvider();
         }
-            return instance;
-        }
+        return instance;
+    }
 
+    /**
+     * 
+     * @return Current date in yyyy-mm-dd format
+     */
     public LocalDate currentDate() {
-            return LocalDate.now();
+        return LocalDate.now();
     }
 }

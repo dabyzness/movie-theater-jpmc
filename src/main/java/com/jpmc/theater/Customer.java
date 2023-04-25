@@ -2,31 +2,40 @@ package com.jpmc.theater;
 
 import java.util.Objects;
 
+/**
+ * Customer - a user who has made reservations for a showing
+ */
 public class Customer {
 
+    /** Customer's name */
     private String name;
-
+    /** Customer's id */
     private String id;
 
     /**
+     * Constructor
+     * 
      * @param name customer name
-     * @param id customer id
+     * @param id   customer id
      */
     public Customer(String name, String id) {
-        this.id = id; // NOTE - id is not used anywhere at the moment
-
+        this.id = id;
         this.name = name;
+    }
 
-        }
-
+    /**
+     * Getter - id
+     */
     public String getId() {
         return id;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Customer))
+            return false;
         Customer customer = (Customer) o;
         return Objects.equals(name, customer.name) && Objects.equals(id, customer.id);
     }
