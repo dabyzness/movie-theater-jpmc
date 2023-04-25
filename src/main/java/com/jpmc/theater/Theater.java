@@ -67,8 +67,27 @@ public class Theater {
         }
     }
 
+    public void printScheduleJSON() {
+        int lastShowing = schedule.get(schedule.size() - 1).getSequenceOfTheDay();
+
+        System.out.println("{\n  \"date\": \"" + provider.currentDate() + "\",");
+        System.out.println("  \"showings\": [");
+        schedule.forEach(s -> {
+            System.out.println("    {");
+            System.out.println("      \"showing\": " + s.getSequenceOfTheDay() + ",");
+            System.out.println("      \"title\": \"" + s.getMovie().getTitle() + "\",");
+            System.out.println("      \"duration\": " + s.getMovie().getRunningTime().toMinutes() + ",");
+            System.out.println("      \"fee\": " + s.getMovieFee() + ",");
+            System.out.println("      \"startTime\": \"" + s.getStartTime() + "\",");
+            System.out.println(lastShowing == s.getSequenceOfTheDay() ? "    }" : "    },");
+        });
+
+        System.out.println("  ]\n}");
+    }
+
     public static void main(String[] args) {
         Theater theater = new Theater(LocalDateProvider.singleton());
         theater.printSchedule();
+        theater.printScheduleJSON();
     }
 }
